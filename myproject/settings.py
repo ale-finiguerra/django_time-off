@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['django.l3ox.me', '10.100.40.6', '127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = ['https://django.l3ox.me']
+
 
 # Application definition
 

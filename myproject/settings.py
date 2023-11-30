@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,10 +25,10 @@ SECRET_KEY = 'django-insecure-9%2$o*%t)b$mpb788r@!@=y$t6=(+j%)6o)!kux3rm8v$u#+85
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django.l3ox.me', '10.100.40.6', '127.0.0.1']
+ALLOWED_HOSTS = ['django.l3ox.me', '10.100.40.6', '127.0.0.1',"localhost"]
 
 CSRF_TRUSTED_ORIGINS = ['https://django.l3ox.me']
-
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap',
 ]
 
 MIDDLEWARE = [
@@ -52,11 +53,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myproject.urls'
-
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
+)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +71,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
@@ -81,6 +83,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
